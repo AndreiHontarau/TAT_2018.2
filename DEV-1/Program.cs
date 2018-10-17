@@ -12,7 +12,7 @@ namespace DEV_1
 		{
 			string Sequence;
 
-			if (args.Length == 0) //Checking the presence of arguments
+			if (args.Length == 0) //Checking for the presence of arguments
 			{
 				Console.WriteLine("Enter a non-empty string.");
 				return;
@@ -32,7 +32,7 @@ namespace DEV_1
 		/// for this subsequence symbols
 		/// </summary>
 		/// <param name="Sequence">Sequence to search in</param>
-		/// <returns></returns>
+		/// <returns>Maximum length of subsequence consisting of unique symbols</returns>
 		int SearcMaxhLength(string Sequence)
 		{
 			string Subsequence = ""; //Temporal storage for subsequences
@@ -62,6 +62,8 @@ namespace DEV_1
 	/// <summary>
 	/// Class ArgumentsConcatenetion concatenates array of strings into single string
 	/// </summary>
+	/// <param name="arguments">Array of arguments to concatenate</param>
+	/// <returns>Concatenated arguments</returns>
 	class ArgumentsConcatenetion
 	{
 		public string Concatenate(string[] arguments)
