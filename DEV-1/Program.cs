@@ -19,7 +19,7 @@ namespace DEV_1
 			}
 
 			//Checking for multiple input and concatenate if needed
-			ArgumentsConcatenetion Concatenator = new ArgumentsConcatenetion();
+			ArgumentsConcatenation Concatenator = new ArgumentsConcatenation();
 			Sequence = Concatenator.Concatenate(args);
 
 			MaxLengthOfUniqueSubsequence Object = new MaxLengthOfUniqueSubsequence();
@@ -60,11 +60,11 @@ namespace DEV_1
 	}
 
 	/// <summary>
-	/// Class ArgumentsConcatenetion concatenates array of strings into single string
+	/// Class ArgumentsConcatenation concatenates array of strings into single string
 	/// </summary>
 	/// <param name="arguments">Array of arguments to concatenate</param>
 	/// <returns>Concatenated arguments</returns>
-	class ArgumentsConcatenetion
+	class ArgumentsConcatenation
 	{
 		public string Concatenate(string[] arguments)
 		{
