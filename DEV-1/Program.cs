@@ -10,18 +10,20 @@ namespace DEV_1
 	{
 		static void Main(string[] args)
 		{
-				if (args.Length == 0) //Checking the presence of arguments
-				{
-					Console.WriteLine("Enter a non-empty string.");
-					return;
-				}
-				if (args.Length > 1) //Checking for multiple input
-				{
-					Console.WriteLine("Wrong number of arguments.");
-					return;
-				}
+			string Sequence;
+
+			if (args.Length == 0) //Checking the presence of arguments
+			{
+				Console.WriteLine("Enter a non-empty string.");
+				return;
+			}
+
+			//Checking for multiple input and concatenate if needed
+			ArgumentsConcatenetion Concatenator = new ArgumentsConcatenetion();
+			Sequence = Concatenator.Concatenate(args);
+
 			MaxLengthOfUniqueSubsequence Object = new MaxLengthOfUniqueSubsequence();
-			Console.WriteLine("Maximum sequence length: " + Object.SearcMaxhLength(args[0]));
+			Console.WriteLine("Maximum sequence length: " + Object.SearcMaxhLength(Sequence));
 		}
 
 		/// <summary>
@@ -54,6 +56,29 @@ namespace DEV_1
 			}
 
 			return MaximumSubsequenceLength;
+		}
+	}
+
+	/// <summary>
+	/// Class ArgumentsConcatenetion concatenates array of strings into single string
+	/// </summary>
+	class ArgumentsConcatenetion
+	{
+		public string Concatenate(string[] arguments)
+		{
+			string argument = "";
+
+			if (arguments.Length == 1)
+			{
+				argument = arguments[0];
+			}
+
+			for (int i=0; i < arguments.Length; i++)
+			{
+				argument = argument + " " + arguments[i];
+			}
+
+			return argument;
 		}
 	}
 }
