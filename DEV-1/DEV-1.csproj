@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="ArgumentsConcatenation.cs" />
     <Compile Include="MaxLengthOfUniqueSubsequence.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="UniqueSubsequencesSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

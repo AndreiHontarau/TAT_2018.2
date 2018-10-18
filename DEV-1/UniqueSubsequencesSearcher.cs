@@ -1,6 +1,6 @@
 namespace DEV_1
 {
-	class Program 
+	class UniqueSubsequencesSearcher
 	{
 		/// <summary>
 		/// Entry point
