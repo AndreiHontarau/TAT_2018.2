@@ -2,6 +2,9 @@ namespace DEV_1
 {
 	class Program 
 	{
+		/// <summary>
+		/// Entry point
+		/// </summary>
 		static void Main(string[] args)
 		{
 			string Sequence;
@@ -12,12 +15,12 @@ namespace DEV_1
 				return;
 			}
 
-			//Checking for multiple input and concatenate if needed
-			ArgumentsConcatenation Concatenator = new ArgumentsConcatenation();
-			Sequence = Concatenator.Concatenate(args);
+			//Checking for multiple arguments and concatenate if needed
+			ArgumentsConcatenation ArgumentsConcatenator = new ArgumentsConcatenation();
+			Sequence = ArgumentsConcatenator.Concatenate(args);
 
-			MaxLengthOfUniqueSubsequence MaxLengthCalculation = new MaxLengthOfUniqueSubsequence();
-			System.Console.WriteLine("Maximum sequence length: " + MaxLengthCalculation.SearcMaxLength(Sequence));
+			MaxLengthOfUniqueSubsequence EntryObject = new MaxLengthOfUniqueSubsequence();
+			System.Console.WriteLine("Maximum sequence length: " + EntryObject.SearcMaxLength(Sequence));
 		}
 	}
 }
