@@ -4,6 +4,12 @@ using System.Text;
 
 namespace DEV_2
 {
+    /// <summary>
+    /// Class CyrillicLatinTranslitaretion implements methods for
+    /// cyrillc to latin transliteration and
+    /// latin to cyrillic transliteration and
+    /// contains dictionaries for them
+    /// </summary>
     class CyrillicLatinTranslitaretion
     {
         Dictionary<string, string> CyrillicToLatinTransliterationDictionary = new Dictionary<string, string>
@@ -77,6 +83,11 @@ namespace DEV_2
             ["e"] = "э",//
         };
 
+        /// <summary>
+        /// Method CyrillicToLatinTranslitaretion transliterates string consisting
+        /// of cyrillic symbols to latin
+        /// </summary>
+        /// <param name="argument">String to transliterate</param>
         public void CyrillicToLatinTranslitaretion(ref string argument)
         {
             StringBuilder sentence = new StringBuilder("");
@@ -90,6 +101,11 @@ namespace DEV_2
             argument = sentence.ToString();
         }
 
+        /// <summary>
+        /// Method CyrillicToLatinTranslitaretion transliterates string consisting
+        /// of latin symbols to cyrillic
+        /// </summary>
+        /// <param name="argument">String to transliterate</param>
         public void LatinToCyrillicTranslitaration(ref string argument)
         {
             StringBuilder sentence = new StringBuilder("");

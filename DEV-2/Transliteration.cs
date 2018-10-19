@@ -1,7 +1,10 @@
 namespace DEV_2
 {
     class Transliteration
-    {
+    {   
+        /// <summary>
+        /// Entry point
+        /// </summary>
         static void Main(string[] args)
         {
             System.Console.OutputEncoding = System.Text.Encoding.UTF8;

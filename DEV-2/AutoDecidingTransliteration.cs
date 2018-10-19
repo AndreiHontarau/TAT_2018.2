@@ -2,13 +2,23 @@ using System;
 using System.Linq;
 
 namespace DEV_2
-{
+{   /// <summary>
+    ///Class AutoDecidingTransliteration detects set of characters (cyrrilic or latin)
+    ///used in a string and calls appropriate method for transliteration
+    ///</summary>
     class AutoDecidingTransliteration
     {
+        /// <summary>
+        ///Method Tranliterate detects set of characters (cyrillic or latin)
+        ///used in a string and calls appropriate method of
+        ///CyrillicLatinTranslitaretion class for transliteration
+        /// </summary>
+        /// <param name="argument">String to transliterate</param>
         public void Tranliterate(ref string argument)
         {
             string check = String.Copy(argument);
-            String.Concat(check.OrderBy(c => c));
+            check = check.Replace(" ", string.Empty);
+            check = String.Concat(check.OrderBy(c => c));
             Console.WriteLine(check);
             CyrillicLatinTranslitaretion Transliterator = new CyrillicLatinTranslitaretion();
 
@@ -23,7 +33,7 @@ namespace DEV_2
             else
             {
                 Console.WriteLine("Wrong input.");
-                System.Environment.Exit(0);
+                Environment.Exit(0);
             }
         }
     }

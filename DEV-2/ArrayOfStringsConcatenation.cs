@@ -29,8 +29,7 @@ namespace DEV_2
                     argument.Append(arguments[i]).Append(" ");
                 }
             }
-
-            argument.Remove(argument.Length - 1, 1); // Delete last space bar
+            
             argument.ToString().ToLower();
             return argument.ToString();
         }
