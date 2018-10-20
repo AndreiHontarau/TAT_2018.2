@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayOfStringsConcatenation.cs" />
     <Compile Include="AutoDecidingTransliteration.cs" />
     <Compile Include="CyrillicLatinTranslitaretion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
