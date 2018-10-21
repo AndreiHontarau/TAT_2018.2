@@ -19,7 +19,6 @@ namespace DEV_2
             string check = String.Copy(argument);
             check = check.Replace(" ", string.Empty);
             check = String.Concat(check.OrderBy(c => c));
-            Console.WriteLine(check);
             CyrillicLatinTranslitaretion Transliterator = new CyrillicLatinTranslitaretion();
 
             if (Enumerable.Range(1072, 1103).Contains(check[0]) && Enumerable.Range(1072, 1103).Contains(check[check.Length - 1]))
