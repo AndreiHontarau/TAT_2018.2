@@ -42,10 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArgumentsConcatenation.cs" />
     <Compile Include="MaxLengthOfUniqueSubsequence.cs" />
-    <Compile Include="UniqueSubsequencesSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UniqueSubsequencesSearcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

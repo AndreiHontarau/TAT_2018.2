@@ -7,20 +7,21 @@ namespace DEV_1
 		/// </summary>
 		static void Main(string[] args)
 		{
-			string Sequence;
+		    try
+		    {
+		        if (args.Length == 0) //Checking for the presence of arguments
+		        {
+		            System.Console.WriteLine("Enter a non-empty string.");
+		            return;
+		        }
 
-			if (args.Length == 0) //Checking for the presence of arguments
-			{
-				System.Console.WriteLine("Enter a non-empty string.");
-				return;
-			}
-
-			//Checking for multiple arguments and concatenate if needed
-			ArgumentsConcatenation ArgumentsConcatenator = new ArgumentsConcatenation();
-			Sequence = ArgumentsConcatenator.Concatenate(args);
-
-			MaxLengthOfUniqueSubsequence EntryObject = new MaxLengthOfUniqueSubsequence();
-			System.Console.WriteLine("Maximum sequence length: " + EntryObject.SearcMaxLength(Sequence));
+		        MaxLengthOfUniqueSubsequence EntryObject = new MaxLengthOfUniqueSubsequence();
+		        System.Console.WriteLine("Maximum sequence length: " + EntryObject.SearcMaxLength(args[0]));
+		    }
+		    catch (System.Exception ex)
+		    {
+		        System.Console.WriteLine("Error: " + ex);
+            }
 		}
 	}
 }
