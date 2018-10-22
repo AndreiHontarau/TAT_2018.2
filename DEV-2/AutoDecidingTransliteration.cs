@@ -21,11 +21,11 @@ namespace DEV_2
             check = String.Concat(check.OrderBy(c => c));
             CyrillicLatinTranslitaretion Transliterator = new CyrillicLatinTranslitaretion();
 
-            if (Enumerable.Range(1072, 1103).Contains(check[0]) && Enumerable.Range(1072, 1103).Contains(check[check.Length - 1]))
+            if (Enumerable.Range(1072, 32).Contains(check[0]) && Enumerable.Range(1072, 32).Contains(check[check.Length - 1]))
             {
                 Transliterator.CyrillicToLatinTranslitaretion(ref argument);
             }
-            else if (Enumerable.Range(97, 122).Contains(check[0]) && Enumerable.Range(97, 122).Contains(check[check.Length - 1]))
+            else if (Enumerable.Range(97, 26).Contains(check[0]) && Enumerable.Range(97, 26).Contains(check[check.Length - 1]))
             {
                 Transliterator.LatinToCyrillicTranslitaration(ref argument);
             }
