@@ -16,7 +16,7 @@ namespace DEV_2
         /// <param name="argument">String to transliterate</param>
         public void Tranliterate(ref string argument)
         {
-            string check = String.Copy(argument);
+            string check = String.Copy(argument); // Copy of string to check for correct input
             check = check.Replace(" ", string.Empty);
             check = String.Concat(check.OrderBy(c => c));
             CyrillicLatinTranslitaretion Transliterator = new CyrillicLatinTranslitaretion();
