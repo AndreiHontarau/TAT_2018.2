@@ -46,7 +46,8 @@ namespace DEV_2
             ["ь"] = String.Empty,
             ["э"] = "e",
             ["ю"] = "yu",
-            ["я"] = "ya"
+            ["я"] = "ya",
+            ["ѐ"] = String.Empty
         };
         Dictionary<string, string> LatinToCyrillicTransliterationDictionary = new Dictionary<string, string>
         {

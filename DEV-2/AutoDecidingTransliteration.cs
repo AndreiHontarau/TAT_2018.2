@@ -21,7 +21,7 @@ namespace DEV_2
             check = String.Concat(check.OrderBy(c => c));
             CyrillicLatinTranslitaretion Transliterator = new CyrillicLatinTranslitaretion();
 
-            if (Enumerable.Range(1072, 32).Contains(check[0]) && Enumerable.Range(1072, 32).Contains(check[check.Length - 1]))
+            if ((Enumerable.Range(1072, 34).Contains(check[0])) && Enumerable.Range(1072, 34).Contains(check[check.Length - 1]))
             {
                 Transliterator.CyrillicToLatinTranslitaretion(ref argument);
             }
