@@ -8,16 +8,17 @@ namespace DEV_3
         /// <summary>
         /// The entry point of the program
         /// </summary>
-        /// <param name="args">The command-line arguments.</param>
+        /// <param name="args">The command-line arguments</param>
         static void Main(string[] args)
         {
             try
             {
-
+                NumeralSystemsConvertor converter = new NumeralSystemsConvertor();
+                System.Console.WriteLine(converter.DecimalNumeralSystemConversion(int.Parse(args[0]), int.Parse(args[1])));
             }
-            catch
+            catch (System.Exception ex)
             {
-
+                System.Console.WriteLine("Error: " + ex.ToString());
             }
         }
     }
