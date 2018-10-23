@@ -10,6 +10,7 @@ namespace DEV_4
             try
             {
                 string xmlString = File.ReadAllText(@args[0]);
+                xmlParser.RemoveComments(ref xmlString);
                 Console.WriteLine(xmlString);
             }
             catch (Exception ex)
