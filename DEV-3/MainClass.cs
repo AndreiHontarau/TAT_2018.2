@@ -22,15 +22,8 @@ namespace DEV_3
                     throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20.");
                 }
 
-                DecimalToOtherNumeralSystemsConvertor converter = new DecimalToOtherNumeralSystemsConvertor();
-                if (numberForConversion >= 0)
-                {
-                    Console.WriteLine(converter.DecimalNumeralSystemConversion(numberForConversion, newBase));
-                }
-                else
-                {
-                    Console.WriteLine("-" + converter.DecimalNumeralSystemConversion(-numberForConversion, newBase));
-                }
+                DecimalToOtherNumeralSystemsConvertor converter = new DecimalToOtherNumeralSystemsConvertor(numberForConversion, newBase);
+                Console.WriteLine(converter.DecimalNumeralSystemConversion());
             }
             catch (ArgumentOutOfRangeException ex)
             {
