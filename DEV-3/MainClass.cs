@@ -3,7 +3,7 @@ using System;
 namespace DEV_3
 {
     /// <summary>
-    /// Class MainClass provides basic functionality
+    /// Class MainClass provides basic functionality of program
     /// </summary>
     class MainClass
     {
@@ -22,7 +22,7 @@ namespace DEV_3
                     throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20.");
                 }
 
-                NumeralSystemsConvertor converter = new NumeralSystemsConvertor();
+                DecimalToOtherNumeralSystemsConvertor converter = new DecimalToOtherNumeralSystemsConvertor();
                 if (numberForConversion >= 0)
                 {
                     Console.WriteLine(converter.DecimalNumeralSystemConversion(numberForConversion, newBase));

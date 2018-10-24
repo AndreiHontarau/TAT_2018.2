@@ -7,7 +7,7 @@ namespace DEV_3
     /// Class NumeralSystemConvertor converts a number
     /// between numeral systems
     /// </summary>
-    class NumeralSystemsConvertor
+    class DecimalToOtherNumeralSystemsConvertor
     {
         Dictionary<int, string> DecimalNmbersToLettersDictionary = new Dictionary<int, string>
         {
