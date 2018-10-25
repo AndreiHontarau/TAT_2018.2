@@ -4,15 +4,15 @@ using System.Collections.Generic;
 namespace DEV_3
 {
     /// <summary>
-    /// Class NumeralSystemConvertor converts a number
-    /// between numeral systems
+    /// Class NumeralSystemConvertor converts a decimal number
+    /// to other numeral systems. New numeral system base shold
+    /// lay in between 2 and 20.
     /// </summary>
     class DecimalToOtherNumeralSystemsConvertor
     {
         private int numberToConvert;
-        private int newNumeralSystemBase;
         private bool numberToConvertIsNegative;
-        Dictionary<int, char> DecimalNmbersToLettersDictionary = new Dictionary<int, char>
+        static Dictionary<int, char> DecimalNmbersToLettersDictionary = new Dictionary<int, char>
         {
             [0] = '0',
             [1] = '1',
@@ -36,13 +36,19 @@ namespace DEV_3
             [19] = 'J',
         };
 
+        public enum newBaseRange
+        {
+            minBase = 2,
+            maxBase = 20
+        }
+
         /// <summary>
         /// Initializes a new instance of the DecimalToOtherNumeralSystemsConvertor
         /// with specified decimal number and numeral system base
         /// </summary>
         /// <param name="numberForConversion">Number to convert</param>
         /// <param name="newBase">Base of a new numeral system</param>
-        public DecimalToOtherNumeralSystemsConvertor(int numberForConversion, int newBase)
+        public DecimalToOtherNumeralSystemsConvertor(int numberForConversion)
         {
             if (numberForConversion < 0)
             {
@@ -54,7 +60,6 @@ namespace DEV_3
                 numberToConvert = numberForConversion;
                 numberToConvertIsNegative = false;
             }
-            newNumeralSystemBase = newBase;
         }
 
         /// <summary>
@@ -62,14 +67,14 @@ namespace DEV_3
         /// to another numeral system
         /// </summary>
         /// <returns>Converted number</returns>
-        public string DecimalNumeralSystemConversion()
+        public string DecimalNumeralSystemConversion(int newBase)
         {
             StringBuilder resultOfConvertion = new StringBuilder("");
 
             do
             {
-                resultOfConvertion.Append(DecimalNmbersToLettersDictionary[numberToConvert % newNumeralSystemBase]);
-                numberToConvert /= newNumeralSystemBase;
+                resultOfConvertion.Append(DecimalNmbersToLettersDictionary[numberToConvert % newBase]);
+                numberToConvert /= newBase;
             } while (numberToConvert != 0);
 
             return SignOutput(ReverseString(resultOfConvertion.ToString()));
