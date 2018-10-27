@@ -13,7 +13,14 @@ namespace Lab_2
         /// <param name="args">CL arguments</param>
         static void Main(string[] args)
         {
-            
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
     }
 }

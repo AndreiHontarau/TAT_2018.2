@@ -5,9 +5,9 @@ namespace Lab_2
     /// </summary>
     class Car
     {
-        private string Brand { get; }
-        private string Model { get; }
-        private string Color { get; }
+        public string Brand { get; }
+        public string Model { get; }
+        public string Color { get; }
 
         /// <summary>
         /// Creates new object Car and initialazes it's

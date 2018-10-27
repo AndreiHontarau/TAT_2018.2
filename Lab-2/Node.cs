@@ -1,5 +1,9 @@
 namespace Lab_2
 {
+    /// <summary>
+    /// Container for MyList. Contains Car, references
+    /// to next and previous nodes.
+    /// </summary>
     class Node
     {
         public Car car { get; private set; }
