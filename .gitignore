@@ -335,8 +335,3 @@ ASALocalRun/
 
 #XML files
 *.xml
-
-#Previous tasks
-DEV-1/
-DEV-2/
-DEV-3/

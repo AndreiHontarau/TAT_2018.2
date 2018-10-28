@@ -9,9 +9,12 @@ namespace DEV_4
         {
             try
             {
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
                 string xmlString = File.ReadAllText(@args[0]);
                 xmlParser.RemoveComments(ref xmlString);
-                Console.WriteLine(xmlString);
+                xmlParser.RemoveXmlDeclaration(ref xmlString);
+                xmlParser.ExtractElement(ref xmlString);
+
             }
             catch (Exception ex)
             {
