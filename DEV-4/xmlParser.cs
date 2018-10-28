@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace DEV_4
 {
+    /// <summary>
+    /// Probides methods to parse XML-Documents
+    /// </summary>
     class xmlParser
     {
         private static string openingTagPattern = @"<[^(/><.)]+>"; //Regular expression for opening tag
@@ -21,6 +24,10 @@ namespace DEV_4
             }
         }
 
+        /// <summary>
+        /// Removes all declarations from XML string
+        /// </summary>
+        /// <param name="xmlString">String to clear</param>
         public static void RemoveXmlDeclaration(ref string xmlString)
         {
             while (xmlString.Contains("<?"))
@@ -29,6 +36,33 @@ namespace DEV_4
             }
         }
 
+        /// <summary>
+        /// Extracts element name from opening tag
+        /// </summary>
+        /// <param name="openingTag">Opening tag</param>
+        /// <returns>Element name</returns>
+        private static string GetElementName(string openingTag)
+        {
+            StringBuilder elementName = new StringBuilder();
+            elementName.Append(openingTag);
+            elementName.Replace("<", String.Empty);
+            elementName.Replace(">", String.Empty);
+            if (elementName.ToString().Contains(" ")) //Remove attributes from element name
+            {
+                elementName.Remove(elementName.ToString().IndexOf(" "),
+                    elementName.ToString().LastIndexOf("\"") - elementName.ToString().IndexOf(" ") + 1);
+            }
+
+            return elementName.ToString();
+        }
+
+        /// <summary>
+        /// Reccurently builds a tree of XML-Elements found in XML-string
+        /// where each element have list of references to it's
+        /// child elements
+        /// </summary>
+        /// <param name="xmlString">XML-string ot parse</param>
+        /// <param name="rootElement">Element to add found child elements to</param>
         public static void ExtractElement(string xmlString, xmlElement rootElement)
         {
             while (Regex.IsMatch(xmlString, openingTagPattern))
@@ -41,21 +75,14 @@ namespace DEV_4
 
                 Match element = Regex.Match(xmlString, openingTagPattern);
 
-                elementName.Append(element.Value);
-                elementOpeningTag.Append(elementName.ToString());
-                elementName.Replace("<", String.Empty);
-                elementName.Replace(">", String.Empty);
-                if (elementName.ToString().Contains(" ")) //Remove attributes from element name
-                {
-                    attributes = elementName.ToString().Substring(elementName.ToString().IndexOf(" "),
-                        elementName.ToString().LastIndexOf("\"") - elementName.ToString().IndexOf(" ") + 1);
-
-                    elementName.Remove(elementName.ToString().IndexOf(" "),
-                        elementName.ToString().LastIndexOf("\"") - elementName.ToString().IndexOf(" ") + 1);
-                }
+                elementOpeningTag.Append(element.Value);
+                elementName.Append(GetElementName(element.Value));
 
                 elementClosingTag.Append(xmlString.Substring(xmlString.IndexOf("</" + elementName.ToString()),
-                    elementName.Length + 3)); //Append closing tag
+                    elementName.Length + 3));
+
+                attributes = element.Value.Substring(elementName.ToString().IndexOf(" "),
+                    elementName.ToString().LastIndexOf("\"") - elementName.ToString().IndexOf(" ") + 1);
 
                 tagContents.Append(xmlString.Substring(xmlString.IndexOf(element.Value) + element.Value.Length,
                     xmlString.IndexOf(elementClosingTag.ToString()) - xmlString.IndexOf(element.Value)).Trim());

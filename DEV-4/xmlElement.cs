@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DEV_4
 {
+    /// <summary>
+    /// Represents an XML-Element
+    /// </summary>
     class xmlElement
     {
         public string name { get; }
@@ -19,6 +22,9 @@ namespace DEV_4
             childElements = new List<xmlElement>();
         }
 
+        /// <summary>
+        /// Prints full path to each element body in XML-file, starting from root element
+        /// </summary>
         public void PrintRoot()
         {
             foreach (xmlElement child in childElements)
@@ -27,6 +33,10 @@ namespace DEV_4
             }
         }
 
+        /// <summary>
+        /// Prints full path to an element body, starting from root element
+        /// </summary>
+        /// <param name="path">Path, accumulated from root element</param>
         public void Print(StringBuilder path)
         {
             path.Append("<" + name + ">");

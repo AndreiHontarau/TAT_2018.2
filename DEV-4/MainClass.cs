@@ -3,8 +3,15 @@ using System.IO;
 
 namespace DEV_4
 {
-    class EntryPoint
+    /// <summary>
+    /// Provides basic functionality of the program
+    /// </summary>
+    class MainClass
     {
+        /// <summary>
+        /// Entry point
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             try
