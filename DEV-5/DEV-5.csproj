@@ -42,7 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AveragePriceCommand.cs" />
+    <Compile Include="AveragePriceOfABrandCommand.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CarCreator.cs" />
+    <Compile Include="CommandsHandler.cs" />
+    <Compile Include="CountAllCommand.cs" />
+    <Compile Include="CountTypesCommand.cs" />
+    <Compile Include="IExecutable.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
