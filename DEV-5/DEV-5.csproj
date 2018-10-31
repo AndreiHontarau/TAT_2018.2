@@ -43,12 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AveragePriceCommand.cs" />
-    <Compile Include="AveragePriceOfABrandCommand.cs" />
+    <Compile Include="AveragePriceForBrandCommand.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarCreator.cs" />
     <Compile Include="CommandsHandler.cs" />
     <Compile Include="CountAllCommand.cs" />
-    <Compile Include="CountTypesCommand.cs" />
+    <Compile Include="CountBrandsCommand.cs" />
+    <Compile Include="ExitCommand.cs" />
+    <Compile Include="HelpCommand.cs" />
     <Compile Include="IExecutable.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
