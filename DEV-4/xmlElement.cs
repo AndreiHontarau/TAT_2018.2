@@ -11,15 +11,20 @@ namespace DEV_4
     {
         public string name { get; }
         public string body { get; set; }
-        public List<xmlAttribute> attributes;
-        public List<xmlElement> childElements;
+        public List<xmlAttribute> attributes { get; }
+        public List<xmlElement> nestedElements { get; }
 
+        /// <summary>
+        /// Creates sa new instance of xmlElement class
+        /// and inisialazes it with name
+        /// </summary>
+        /// <param name="elementName"></param>
         public xmlElement(string elementName)
         {
             name = elementName;
             body = "";
             attributes = new List<xmlAttribute>();
-            childElements = new List<xmlElement>();
+            nestedElements = new List<xmlElement>();
         }
 
         /// <summary>
@@ -27,9 +32,9 @@ namespace DEV_4
         /// </summary>
         public void PrintRoot()
         {
-            foreach (xmlElement child in childElements)
+            foreach (xmlElement nestedElement in nestedElements)
             {
-                child.Print(new StringBuilder());
+                nestedElement.Print(new StringBuilder());
             }
         }
 
@@ -39,15 +44,20 @@ namespace DEV_4
         /// <param name="path">Path, accumulated from root element</param>
         public void Print(StringBuilder path)
         {
-            path.Append("<" + name + ">");
+            path.Append("<" + name);
+            foreach (xmlAttribute attribute in attributes)
+            {
+                path.Append(" { " + attribute.name + "=\"" + attribute.value + "\" } ");
+            }
+            path.Append(">"); 
             path.Append(" -> ");
             path.Append(body);
             if (body == String.Empty)
             {
-                foreach (xmlElement child in childElements)
+                foreach (xmlElement nestedElement in nestedElements)
                 {
                     StringBuilder deeperPath = new StringBuilder(path.ToString());
-                    child.Print(deeperPath);
+                    nestedElement.Print(deeperPath);
                 }
             }
             else

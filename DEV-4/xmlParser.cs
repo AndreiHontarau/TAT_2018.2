@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -56,39 +57,71 @@ namespace DEV_4
             return elementName.ToString();
         }
 
+        private static void AddAttributesToElement(StringBuilder openingTag, xmlElement element)
+        {
+            string attributes = "";
+
+            attributes = openingTag.ToString().Substring(openingTag.ToString().IndexOf(" "),
+                element.name.LastIndexOf("\"") - element.name.IndexOf(" ") + 1);
+
+            while (Regex.IsMatch(openingTag.ToString(), "="))
+            {
+                int endOfAttributeValue = openingTag.ToString().IndexOf("\"") + 1;
+                while (!openingTag[endOfAttributeValue].Equals('"'))
+                {
+                    endOfAttributeValue++;
+                }
+
+                string attributeName = openingTag.ToString().Substring(openingTag.ToString().IndexOf(" ") + 1,
+                    openingTag.ToString().IndexOf("\"") - openingTag.ToString().IndexOf(" ") - 2);
+
+                string attributeValue = openingTag.ToString().Substring(openingTag.ToString().IndexOf("\"") + 1,
+                    endOfAttributeValue - openingTag.ToString().IndexOf("\"") - 1);
+
+                xmlAttribute attribute = new xmlAttribute(attributeName, attributeValue);
+
+                element.attributes.Add(attribute);
+
+                openingTag.Replace(" " + attributeName + "=\"" + attributeValue + "\"", String.Empty);
+            }
+        }
+
         /// <summary>
         /// Reccurently builds a tree of XML-Elements found in XML-string
         /// where each element have list of references to it's
-        /// child elements
+        /// nested elements
         /// </summary>
         /// <param name="xmlString">XML-string ot parse</param>
-        /// <param name="rootElement">Element to add found child elements to</param>
+        /// <param name="rootElement">Element to add found nested elements to</param>
         public static void ExtractElement(string xmlString, xmlElement rootElement)
         {
             while (Regex.IsMatch(xmlString, openingTagPattern))
             {
                 StringBuilder elementName = new StringBuilder();
                 StringBuilder elementClosingTag = new StringBuilder();
-                StringBuilder elementOpeningTag = new StringBuilder();
                 StringBuilder tagContents = new StringBuilder();
-                string attributes = "";
+                StringBuilder openingTag = new StringBuilder();
 
                 Match element = Regex.Match(xmlString, openingTagPattern);
 
-                elementOpeningTag.Append(element.Value);
+                openingTag.Append(element.Value);
                 elementName.Append(GetElementName(element.Value));
 
                 elementClosingTag.Append(xmlString.Substring(xmlString.IndexOf("</" + elementName.ToString()),
                     elementName.Length + 3));
-
-                attributes = element.Value.Substring(elementName.ToString().IndexOf(" "),
-                    elementName.ToString().LastIndexOf("\"") - elementName.ToString().IndexOf(" ") + 1);
 
                 tagContents.Append(xmlString.Substring(xmlString.IndexOf(element.Value) + element.Value.Length,
                     xmlString.IndexOf(elementClosingTag.ToString()) - xmlString.IndexOf(element.Value)).Trim());
 
                 xmlElement newElement = new xmlElement(elementName.ToString());
 
+                if (Regex.IsMatch(element.Value, "="))
+                {
+                    AddAttributesToElement(openingTag, newElement);
+                }
+
+                // If there is nested tag inside current tag call ExtractElement for it,
+                // else extract current tag's body
                 if (Regex.IsMatch(tagContents.ToString(), openingTagPattern))
                 {
                     ExtractElement(tagContents.ToString(), newElement);
@@ -102,7 +135,7 @@ namespace DEV_4
                         xmlString.IndexOf(elementClosingTag.ToString()) + elementClosingTag.ToString().Length).Trim();
                 }
 
-                rootElement.childElements.Add(newElement);
+                rootElement.nestedElements.Add(newElement);
             }
         }
     }

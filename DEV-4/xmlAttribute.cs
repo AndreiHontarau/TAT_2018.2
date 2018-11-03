@@ -5,7 +5,13 @@ namespace DEV_4
     /// </summary>
     class xmlAttribute
     {
-        private string name { get; }
-        private string value { get; }
+        public string name { get; }
+        public string value { get; }
+
+        public xmlAttribute(string name, string value)
+        {
+            this.name = name;
+            this.value = value;
+        }
     }
 }
