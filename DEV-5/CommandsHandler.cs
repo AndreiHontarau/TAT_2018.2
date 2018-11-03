@@ -32,11 +32,11 @@ namespace DEV_5
         /// </summary>
         /// <param name="CarsList">List of cars that must be passed to command</param>
         /// <param name="command">Command name</param>
-        public void HandleCommand(List<Car> CarsList, string command)
+        public void HandleCommand(CarsHouse carsHouse, string command)
         {
             if (CommandsDictionary.ContainsKey(command))
             {
-                CommandsDictionary[command].Execute(CarsList, ExtractCommandParameter(command));
+                CommandsDictionary[command].Execute(carsHouse, ExtractCommandParameter(command));
             }
             else
             {

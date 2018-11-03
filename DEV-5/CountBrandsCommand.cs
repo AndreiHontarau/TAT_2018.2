@@ -4,7 +4,7 @@ namespace DEV_5
 {
     class CountBrandsCommand : IExecutable
     {
-        public void Execute(List<Car> Cars, string additionalParameter = null)
+        public void Execute(CarsHouse carsHouse, string additionalParameter = null)
         {
 
         }

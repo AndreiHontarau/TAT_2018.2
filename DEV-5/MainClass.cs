@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace DEV_5
 {
     /// <summary>
@@ -16,16 +13,13 @@ namespace DEV_5
         {
             try
             {
-                CarCreator carCreator = new CarCreator();
-                List<Car> CarsList = new List<Car>();
-                while (Console.ReadKey(true).Key != ConsoleKey.Escape)
-                {
-                    CarsList.Add(carCreator.Create());
-                }
+                CarsHouse carsHouse = new CarsHouse();
+                CarsHouseMenu Menu = CarsHouseMenu.getMenu();
+                Menu.StartInteraction(carsHouse);
             }
-            catch(Exception ex)
+            catch(System.Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                System.Console.WriteLine("Error: " + ex.Message);
             }
         }
     }

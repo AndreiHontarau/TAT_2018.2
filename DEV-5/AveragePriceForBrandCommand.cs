@@ -4,7 +4,7 @@ namespace DEV_5
 {
     class AveragePriceForBrandCommand : IExecutable
     {
-        public void Execute(List<Car> Cars, string brandOfACars)
+        public void Execute(CarsHouse carsHouse, string brandOfACars)
         {
 
         }

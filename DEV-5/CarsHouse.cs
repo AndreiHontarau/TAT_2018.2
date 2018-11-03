@@ -1,13 +1,13 @@
 using System;
+using System.Collections.Generic;
 
 namespace DEV_5
 {
-    /// <summary>
-    /// Clss for car creation
-    /// </summary>
-    class CarCreator
+    class CarsHouse
     {
-        public Car Create()
+        private List<Car> CarsList;
+
+        public void CreateCar()
         {
             Console.Write("Enter car brand: ");
             string brand = Console.ReadLine();
@@ -21,7 +21,7 @@ namespace DEV_5
             Console.Write("Enter car price: ");
             float price = Single.Parse(Console.ReadLine());
 
-            return new Car(brand, model, price, amount);
+            CarsList.Add(new Car(brand, model, price, amount));
         }
     }
 }
