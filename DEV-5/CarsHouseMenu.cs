@@ -21,7 +21,7 @@ namespace DEV_5
         /// <returns>Menu</returns>
         public static CarsHouseMenu getMenu()
         {
-            if (getMenu() == null)
+            if (Menu == null)
             {
                 Menu = new CarsHouseMenu();
             }
@@ -35,18 +35,30 @@ namespace DEV_5
         /// </summary>
         private void FillInCarsList(CarsHouse carsHouse)
         {
+            Console.WriteLine("Press any key to create a car and Esc to stop.");
+
             while (Console.ReadKey(true).Key != ConsoleKey.Escape)
             {
-                carsHouse.CreateCar();
+                carsHouse.AddCar();
+                Console.WriteLine();
             }
         }
 
         /// <summary>
         /// Initiates interaction with user through text UI
         /// </summary>
-        public void StartInteraction(CarsHouse carsHouse)
+        public void Interact(CarsHouse carsHouse)
         {
             Menu.FillInCarsList(carsHouse);
+
+            CommandsHandler commandsHandler = new CommandsHandler();
+
+            Console.WriteLine("Press any key to enter a command and Esc to stop.");
+
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
+            {
+                commandsHandler.HandleCommand(carsHouse, Console.ReadLine());
+            }
         }
     }
 }

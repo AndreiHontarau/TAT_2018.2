@@ -15,7 +15,7 @@ namespace DEV_5
             {
                 CarsHouse carsHouse = new CarsHouse();
                 CarsHouseMenu Menu = CarsHouseMenu.getMenu();
-                Menu.StartInteraction(carsHouse);
+                Menu.Interact(carsHouse);
             }
             catch(System.Exception ex)
             {

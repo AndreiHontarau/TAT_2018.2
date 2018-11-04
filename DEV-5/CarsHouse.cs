@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace DEV_5
@@ -7,21 +6,33 @@ namespace DEV_5
     {
         private List<Car> CarsList;
 
-        public void CreateCar()
+        public CarsHouse()
         {
-            Console.Write("Enter car brand: ");
-            string brand = Console.ReadLine();
+            CarsList = new List<Car>();
+        }
 
-            Console.Write("Enter car model: ");
-            string model = Console.ReadLine();
+    public void AddCar()
+        {
+            CarCreator creator = new CarCreator();
 
-            Console.Write("Enter amount of cars: ");
-            int amount = Int32.Parse(Console.ReadLine());
+            CarsList.Add((Car)creator.Create());
+        }
 
-            Console.Write("Enter car price: ");
-            float price = Single.Parse(Console.ReadLine());
+        public void CountBrands()
+        {
+            int brandsCounter = 0;
+            List<string> brands = new List<string>();
 
-            CarsList.Add(new Car(brand, model, price, amount));
+            foreach (Car car in CarsList)
+            {
+                if (!brands.Contains(car.Brand))
+                {
+                    brands.Add(car.Brand);
+                    brandsCounter++;
+                }
+            }
+
+            System.Console.WriteLine(brandsCounter);
         }
     }
 }

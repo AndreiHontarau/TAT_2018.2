@@ -15,7 +15,7 @@ namespace DEV_5
         private const string CountBrands = "count types";
         private const string CountAll = "count all";
         private const string AveragePrice = "average price";
-        private const string AveragePriceForBrand = "average price 'brand'";
+        private const string AveragePriceForBrand = "average price ";
 
         private Dictionary<string, IExecutable> CommandsDictionary = new Dictionary<string, IExecutable>()
         {
@@ -28,20 +28,48 @@ namespace DEV_5
         };
 
         /// <summary>
-        /// Decides wich command to execute
+        /// Tries to find and execute command from CommandsDictionry
         /// </summary>
         /// <param name="CarsList">List of cars that must be passed to command</param>
-        /// <param name="command">Command name</param>
+        /// <param name="command">Command name, command parameters</param>
         public void HandleCommand(CarsHouse carsHouse, string command)
         {
             if (CommandsDictionary.ContainsKey(command))
             {
-                CommandsDictionary[command].Execute(carsHouse, ExtractCommandParameter(command));
+                CommandsDictionary[command].Execute(carsHouse);
             }
-            else
+            else if(!TryToExecuteWithArguments(carsHouse, command))
             {
                 Console.WriteLine("Wrong command. For help enter \"help\".");
             }
+        }
+
+        /// <summary>
+        /// Tries to find and execute command with parameter from CommandsDictionry
+        /// </summary>
+        /// <param name="carsHouse">List of cars that must be passed to command</param>
+        /// <param name="command">Command name, command parameters</param>
+        /// <returns>True if succeeded, false otherwise</returns>
+        private bool TryToExecuteWithArguments(CarsHouse carsHouse, string command)
+        {
+            string[] splittedCommand = command.Split(' ');
+            command = "";
+            for (int i = 0; i < splittedCommand.Length; i++)
+            {
+                command += splittedCommand[i] + " ";
+                if (CommandsDictionary.ContainsKey(command))
+                {
+                    CommandsDictionary[command].Execute(carsHouse, splittedCommand[i + 1]);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void TryToExecute(CarsHouse carsHouse, string command)
+        {
+
         }
 
         /// <summary>

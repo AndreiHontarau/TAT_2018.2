@@ -3,7 +3,7 @@ namespace DEV_5
     /// <summary>
     /// Represents a car
     /// </summary>
-    class Car
+    class Car : Product
     {
         public string Brand { get; }
         public string Model { get; }
@@ -23,7 +23,7 @@ namespace DEV_5
             Brand = brand;
             Model = model;
             Amount = amount;
-            Price = Price;
+            Price = price;
         }
     }
 }

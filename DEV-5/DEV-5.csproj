@@ -45,7 +45,9 @@
     <Compile Include="AveragePriceCommand.cs" />
     <Compile Include="AveragePriceForBrandCommand.cs" />
     <Compile Include="Car.cs" />
+    <Compile Include="CarCreator.cs" />
     <Compile Include="CarsHouse.cs" />
+    <Compile Include="CarsHouseMenu.cs" />
     <Compile Include="CommandsHandler.cs" />
     <Compile Include="CountAllCommand.cs" />
     <Compile Include="CountBrandsCommand.cs" />
@@ -53,6 +55,8 @@
     <Compile Include="HelpCommand.cs" />
     <Compile Include="IExecutable.cs" />
     <Compile Include="MainClass.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="ProductCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
