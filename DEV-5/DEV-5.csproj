@@ -42,25 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AveragePriceCommand.cs" />
-    <Compile Include="AveragePriceForBrandCommand.cs" />
+    <Compile Include="Interfaces\IStorageActable.cs" />
+    <Compile Include="Commands\AveragePriceCommand.cs" />
+    <Compile Include="Commands\AveragePriceForBrandCommand.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarCreator.cs" />
     <Compile Include="CarsHouse.cs" />
     <Compile Include="CarsHouseMenu.cs" />
     <Compile Include="CommandsHandler.cs" />
-    <Compile Include="CountAllCommand.cs" />
-    <Compile Include="CountBrandsCommand.cs" />
-    <Compile Include="ExitCommand.cs" />
-    <Compile Include="HelpCommand.cs" />
-    <Compile Include="IExecutable.cs" />
+    <Compile Include="Commands\CountAllCommand.cs" />
+    <Compile Include="Commands\CountBrandsCommand.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Interfaces\IExecutable.cs" />
     <Compile Include="MainClass.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductCreator.cs" />
+    <Compile Include="Abstract classes\Product.cs" />
+    <Compile Include="Abstract classes\ProductCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

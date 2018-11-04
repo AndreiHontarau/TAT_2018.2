@@ -2,8 +2,16 @@ using System;
 
 namespace DEV_5
 {
+    /// <summary>
+    /// Class for cars creation
+    /// </summary>
     class CarCreator : ProductCreator
     {
+        /// <summary>
+        /// Leads user through steps of car creation,
+        /// creates an object of Car class
+        /// </summary>
+        /// <returns>Created Car object</returns>
         public override Product Create()
         {
             Console.Write("Enter car brand: ");

@@ -4,11 +4,12 @@ namespace DEV_5
 {
     /// <summary>
     /// Allows user to interact with the program,
-    /// provides text UI for it
+    /// provides text UI for it. Singleton.
     /// </summary>
     class CarsHouseMenu
     {
         private static CarsHouseMenu Menu;
+        private static bool exitFlag = false;
 
         /// <summary>
         /// Creates an empty CarsHouseMenu object
@@ -37,9 +38,11 @@ namespace DEV_5
         {
             Console.WriteLine("Press any key to create a car and Esc to stop.");
 
+            CarCreator carCreator = new CarCreator();
             while (Console.ReadKey(true).Key != ConsoleKey.Escape)
             {
-                carsHouse.AddCar();
+                Car newCar = (Car)carCreator.Create();
+                carsHouse.AddProduct(newCar);
                 Console.WriteLine();
             }
         }
@@ -53,12 +56,18 @@ namespace DEV_5
 
             CommandsHandler commandsHandler = new CommandsHandler();
 
-            Console.WriteLine("Press any key to enter a command and Esc to stop.");
-
-            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
+            while (exitFlag != true)
             {
                 commandsHandler.HandleCommand(carsHouse, Console.ReadLine());
             }
+        }
+
+        /// <summary>
+        /// Sets exit flag in true
+        /// </summary>
+        public void Exit()
+        {
+            exitFlag = true;
         }
     }
 }

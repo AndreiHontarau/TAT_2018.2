@@ -10,7 +10,6 @@ namespace DEV_5
     partial class CommandsHandler
     {
         // Possible commands
-        private const string Help = "help";
         private const string Exit = "exit";
         private const string CountBrands = "count types";
         private const string CountAll = "count all";
@@ -19,7 +18,6 @@ namespace DEV_5
 
         private Dictionary<string, IExecutable> CommandsDictionary = new Dictionary<string, IExecutable>()
         {
-            [Help] = new HelpCommand(),
             [Exit] = new ExitCommand(),
             [CountBrands] = new CountBrandsCommand(),
             [CountAll] = new CountAllCommand(),
@@ -40,7 +38,7 @@ namespace DEV_5
             }
             else if(!TryToExecuteWithArguments(carsHouse, command))
             {
-                Console.WriteLine("Wrong command. For help enter \"help\".");
+                Console.WriteLine("Wrong command.");
             }
         }
 

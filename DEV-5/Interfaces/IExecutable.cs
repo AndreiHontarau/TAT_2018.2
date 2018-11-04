@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace DEV_5
 {
     interface IExecutable
