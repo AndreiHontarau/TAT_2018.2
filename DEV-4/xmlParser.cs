@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -26,7 +25,7 @@ namespace DEV_4
         }
 
         /// <summary>
-        /// Removes all declarations from XML string
+        /// Removes all declarations from XML string.
         /// </summary>
         /// <param name="xmlString">String to clear</param>
         public static void RemoveXmlDeclaration(ref string xmlString)
@@ -38,7 +37,7 @@ namespace DEV_4
         }
 
         /// <summary>
-        /// Extracts element name from opening tag
+        /// Extracts element name from opening tag.
         /// </summary>
         /// <param name="openingTag">Opening tag</param>
         /// <returns>Element name</returns>
@@ -57,6 +56,12 @@ namespace DEV_4
             return elementName.ToString();
         }
 
+        /// <summary>
+        /// Extracts XML-attributes from opening tag and adds them
+        /// to the list af attributes of an object of xmlElement class.
+        /// </summary>
+        /// <param name="openingTag">Opening tag of an XML-element</param>
+        /// <param name="element">Object of an xmlElement class</param>
         private static void AddAttributesToElement(StringBuilder openingTag, xmlElement element)
         {
             string attributes = "";
@@ -89,11 +94,11 @@ namespace DEV_4
         /// <summary>
         /// Reccurently builds a tree of XML-Elements found in XML-string
         /// where each element have list of references to it's
-        /// nested elements
+        /// nested elements. Extracts each element body if presented.
         /// </summary>
         /// <param name="xmlString">XML-string ot parse</param>
         /// <param name="rootElement">Element to add found nested elements to</param>
-        public static void ExtractElement(string xmlString, xmlElement rootElement)
+        public static void Parse(string xmlString, xmlElement rootElement)
         {
             while (Regex.IsMatch(xmlString, openingTagPattern))
             {
@@ -105,26 +110,30 @@ namespace DEV_4
                 Match element = Regex.Match(xmlString, openingTagPattern);
 
                 openingTag.Append(element.Value);
+
                 elementName.Append(GetElementName(element.Value));
 
+                // Constructing closing tag of an element
                 elementClosingTag.Append(xmlString.Substring(xmlString.IndexOf("</" + elementName.ToString()),
                     elementName.Length + 3));
 
+                // Extracting tag's contents
                 tagContents.Append(xmlString.Substring(xmlString.IndexOf(element.Value) + element.Value.Length,
                     xmlString.IndexOf(elementClosingTag.ToString()) - xmlString.IndexOf(element.Value)).Trim());
 
                 xmlElement newElement = new xmlElement(elementName.ToString());
 
+                // Extract attributes if presented
                 if (Regex.IsMatch(element.Value, "="))
                 {
                     AddAttributesToElement(openingTag, newElement);
                 }
 
                 // If there is nested tag inside current tag call ExtractElement for it,
-                // else extract current tag's body
+                // else extract current tag body
                 if (Regex.IsMatch(tagContents.ToString(), openingTagPattern))
                 {
-                    ExtractElement(tagContents.ToString(), newElement);
+                    Parse(tagContents.ToString(), newElement);
                     xmlString = xmlString.Remove(xmlString.IndexOf(element.Value),
                         xmlString.IndexOf(elementClosingTag.ToString()) + elementClosingTag.ToString().Length).Trim();
                 }

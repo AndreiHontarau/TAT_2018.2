@@ -21,9 +21,8 @@ namespace DEV_4
                 xmlParser.RemoveComments(ref xmlString);
                 xmlParser.RemoveXmlDeclaration(ref xmlString);
                 xmlElement rootElement = new xmlElement("root");
-                xmlParser.ExtractElement(xmlString, rootElement);
+                xmlParser.Parse(xmlString, rootElement);
                 rootElement.PrintRoot();
-
             }
             catch (Exception ex)
             {

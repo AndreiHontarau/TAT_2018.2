@@ -47,7 +47,11 @@ namespace DEV_4
             path.Append("<" + name);
             foreach (xmlAttribute attribute in attributes)
             {
-                path.Append(" { " + attribute.name + "=\"" + attribute.value + "\" } ");
+                path.Append(" { ");
+                path.Append(attribute.name);
+                path.Append("=\"");
+                path.Append(attribute.value);
+                path.Append("\" } ");
             }
             path.Append(">"); 
             path.Append(" -> ");
