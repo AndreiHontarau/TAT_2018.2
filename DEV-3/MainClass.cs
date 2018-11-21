@@ -10,25 +10,22 @@ namespace DEV_3
         /// <summary>
         /// The entry point of the program
         /// </summary>
-        /// <param name="args">The command-line arguments</param>
+        /// <param name="args">The command-line arguments. First argument is a number to convert, second is a new numeral sysrem base.</param>
         static void Main(string[] args)
         {
             try
             {
                 int numberForConversion = int.Parse(args[0]);
                 int newBase = int.Parse(args[1]);
-                if (newBase < (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.minBase || 
-                    newBase > (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.maxBase) //Checking for the correctness of inputed base
+                //Checking for the correctness of inputed base
+                if (newBase < (int)DecimalToOtherNumeralSystemsConverter.newBaseRange.minBase || 
+                    newBase > (int)DecimalToOtherNumeralSystemsConverter.newBaseRange.maxBase)
                 {
-                    throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20.");
+                    throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20 inclusive.");
                 }
 
-                DecimalToOtherNumeralSystemsConvertor Converter = new DecimalToOtherNumeralSystemsConvertor(numberForConversion);
-                Console.WriteLine(Converter.DecimalNumeralSystemConversion(newBase));
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                Console.WriteLine(ex.Message);
+                DecimalToOtherNumeralSystemsConverter DecimalConverter = new DecimalToOtherNumeralSystemsConverter(numberForConversion);
+                Console.WriteLine(DecimalConverter.ConvertDecimalNumber(newBase));
             }
             catch (FormatException)
             {

@@ -1,14 +1,15 @@
+using System;
 using System.Text;
 using System.Collections.Generic;
 
 namespace DEV_3
 {
     /// <summary>
-    /// Class NumeralSystemConvertor converts a decimal number
+    /// Class DecimalToOtherNumeralSystemsConverter converts a decimal number
     /// to other numeral systems. New numeral system base shold
     /// lay in between 2 and 20.
     /// </summary>
-    class DecimalToOtherNumeralSystemsConvertor
+    public class DecimalToOtherNumeralSystemsConverter
     {
         private int numberToConvert;
         private bool numberToConvertIsNegative;
@@ -43,13 +44,18 @@ namespace DEV_3
         }
 
         /// <summary>
-        /// Initializes a new instance of the DecimalToOtherNumeralSystemsConvertor
+        /// Initializes a new instance of the DecimalToOtherNumeralSystemsConverter
         /// with specified decimal number and numeral system base
         /// </summary>
         /// <param name="numberForConversion">Number to convert</param>
         /// <param name="newBase">Base of a new numeral system</param>
-        public DecimalToOtherNumeralSystemsConvertor(int numberForConversion)
+        public DecimalToOtherNumeralSystemsConverter(int numberForConversion)
         {
+            if (numberForConversion == int.MinValue)
+            {
+                throw new OverflowException();
+            }
+
             if (numberForConversion < 0)
             {
                 numberToConvert = -numberForConversion;
@@ -63,13 +69,18 @@ namespace DEV_3
         }
 
         /// <summary>
-        /// Method DecimalNumeralSystemConversion converts decimal number
+        /// Method ConvertDecimalNumber converts decimal number
         /// to another numeral system
         /// </summary>
         /// <returns>Converted number</returns>
-        public string DecimalNumeralSystemConversion(int newBase)
+        public string ConvertDecimalNumber(int newBase)
         {
             StringBuilder resultOfConvertion = new StringBuilder("");
+
+            if (newBase < 2 || newBase > 20)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
 
             do
             {
@@ -77,7 +88,7 @@ namespace DEV_3
                 numberToConvert /= newBase;
             } while (numberToConvert != 0);
 
-            return SignOutput(ReverseString(resultOfConvertion.ToString()));
+            return AddSignToOutput(ReverseString(resultOfConvertion.ToString()));
         }
 
         /// <summary>
@@ -98,7 +109,7 @@ namespace DEV_3
         /// </summary>
         /// <param name="conversionResult">Result of conversion</param>
         /// <returns>Signed result of conversion</returns>
-        private string SignOutput(string conversionResult)
+        private string AddSignToOutput(string conversionResult)
         {
             if (numberToConvertIsNegative)
             {
