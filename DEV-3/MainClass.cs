@@ -18,18 +18,24 @@ namespace DEV_3
                 int numberForConversion = int.Parse(args[0]);
                 int newBase = int.Parse(args[1]);
                 //Checking for the correctness of inputed base
-                if (newBase < (int)DecimalToOtherNumeralSystemsConverter.newBaseRange.minBase || 
-                    newBase > (int)DecimalToOtherNumeralSystemsConverter.newBaseRange.maxBase)
+                if (newBase < (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.minBase ||
+                    newBase > (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.maxBase)
                 {
-                    throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20 inclusive.");
+                    throw new ArgumentOutOfRangeException("Base",
+                        "Base of a new numeral system should lay in bwtween 2 and 20 inclusively.");
                 }
 
-                DecimalToOtherNumeralSystemsConverter DecimalConverter = new DecimalToOtherNumeralSystemsConverter(numberForConversion);
+                DecimalToOtherNumeralSystemsConverter DecimalConverter =
+                    new DecimalToOtherNumeralSystemsConverter(numberForConversion);
                 Console.WriteLine(DecimalConverter.ConvertDecimalNumber(newBase));
             }
             catch (FormatException)
             {
                 Console.WriteLine("Error: arguments shold contain only decimal integer numbers.");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Error: Converter must take two arguments.");
             }
             catch (Exception ex)
             {

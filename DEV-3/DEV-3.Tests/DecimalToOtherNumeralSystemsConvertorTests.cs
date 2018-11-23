@@ -7,6 +7,7 @@ namespace DEV_3.Tests
     public class DecimalToOtherNumeralSystemsConverterTests
     {
         [TestCase(int.MaxValue, 16, "7FFFFFFF")]
+        [TestCase(int.MinValue + 1, 16, "-7FFFFFFF")]
         [TestCase(0, 15, "0")]
         [TestCase(32874, 2, "1000000001101010")]
         [TestCase(1535, 20, "3GF")]
