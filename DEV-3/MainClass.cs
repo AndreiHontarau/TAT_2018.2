@@ -21,7 +21,7 @@ namespace DEV_3
                 if (newBase < (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.minBase ||
                     newBase > (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.maxBase)
                 {
-                    throw new ArgumentOutOfRangeException("Base",
+                    throw new ArgumentOutOfRangeException("",
                         "Base of a new numeral system should lay in bwtween 2 and 20 inclusively.");
                 }
 
@@ -36,6 +36,10 @@ namespace DEV_3
             catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("Error: Converter must take two arguments.");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Entered number was either too large or too small.");
             }
             catch (Exception ex)
             {
