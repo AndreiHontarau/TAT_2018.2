@@ -22,23 +22,9 @@ namespace DEV_9
             loginPage.Login(driver, 10);
 
             MainPage mainPage = new MainPage();
-            mainPage.GetUnreadDialogs(driver, 5);
+            List<Dialog> unreadDialogs = mainPage.GetUnreadDialogs(driver, 15);
 
-            //driver.Navigate().GoToUrl("https://www.facebook.com/messages/?filter=unread");
-
-            //MessegesPage messegesPage = new MessegesPage();
-            //IReadOnlyCollection<IWebElement> unreadDialogs = messegesPage.GetUnreadDialogs(driver);
-            //if (unreadDialogs.Count > 0)
-            //{
-            //    foreach (var dialog in unreadDialogs)
-            //    {
-
-            //    }
-            //}
-            //else
-            //{
-
-            //}
+            driver.Navigate().GoToUrl("https://www.facebook.com/messages/?filter=unread");
         }
     }
 }
