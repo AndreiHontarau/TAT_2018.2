@@ -19,10 +19,26 @@ namespace DEV_9
             LoginPage loginPage = new LoginPage();
             loginPage.UserName = "yopenoz@zdfpost.net";
             loginPage.Password = "FB135795";
-            loginPage.Login(driver);
+            loginPage.Login(driver, 10);
 
-            driver.Navigate().GoToUrl("https://www.facebook.com/messages/?filter=unread");
+            MainPage mainPage = new MainPage();
+            mainPage.GetUnreadDialogs(driver, 5);
 
+            //driver.Navigate().GoToUrl("https://www.facebook.com/messages/?filter=unread");
+
+            //MessegesPage messegesPage = new MessegesPage();
+            //IReadOnlyCollection<IWebElement> unreadDialogs = messegesPage.GetUnreadDialogs(driver);
+            //if (unreadDialogs.Count > 0)
+            //{
+            //    foreach (var dialog in unreadDialogs)
+            //    {
+
+            //    }
+            //}
+            //else
+            //{
+
+            //}
         }
     }
 }
