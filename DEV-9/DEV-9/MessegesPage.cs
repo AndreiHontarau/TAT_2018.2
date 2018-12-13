@@ -11,24 +11,40 @@ namespace DEV_9
 {
     class MessegesPage
     {
-        By DialogsList = By.XPath("//*[@class = '_4u-c _3_e8 _9hq']");
-        By UnreadDialog = By.XPath("//*[@class = '_4u-c _3_e8 _9hq']//*[@class = '_5l-3 _1ht1 _1ht3']");
-        //By UnreadMessege 
+        By UnreadDialogButton = By.XPath("//*[@class = '_1enh']//*[@class = '_5l-3 _1ht1 _1ht3']");
+        By Messege = By.XPath("//*[@class = '_3oh- _58nk']");
 
-        public IReadOnlyCollection<IWebElement> GetUnreadDialogs(IWebDriver driver)
+        public void ExtractUnreadDialogsMesseges(IWebDriver driver, List<Dialog> unreadDialogs)
         {
-            return driver.FindElements(UnreadDialog);
+            List<IWebElement> unreadDialogsButtonsList = new List<IWebElement>();
+            List<IWebElement> messegesList = new List<IWebElement>();
+            IReadOnlyCollection<IWebElement> unreadDialogsButtons = driver.FindElements(UnreadDialogButton);
+            IReadOnlyCollection<IWebElement> messeges = new List<IWebElement>();
+
+            foreach (var x in unreadDialogsButtons)
+            {
+                unreadDialogsButtonsList.Add(x);
+            }
+
+            foreach (Dialog unreadDialog in unreadDialogs)
+            {
+                Console.WriteLine("\t\t\t" + unreadDialog.sender + "\n");
+
+                IWebElement button = unreadDialogsButtonsList.Find(x => x.Text.Contains(unreadDialog.sender));
+                button?.Click();
+                unreadDialogsButtonsList.Remove(button);
+                messeges = driver.FindElements(Messege);
+                foreach (IWebElement messege in messeges)
+                {
+                    messegesList.Add(messege);
+                    messegesList.Reverse();
+                }
+
+                for (int i = 0; i < unreadDialog.numberOfUnreadMesseges; i++)
+                {
+                    Console.WriteLine(messegesList[i].Text + "\n");
+                }
+            }
         }
-
-        //public List<Dialog> GetUnreadDialogsMesseges(IWebDriver driver)
-        //{
-        //    IReadOnlyCollection<IWebElement> unreadDialogs = GetUnreadDialogs(driver);
-        //    List<Dialog> unreadDialogsMesseges = new List<Dialog>();
-
-        //    foreach (IWebElement unreadDialog in unreadDialogs)
-        //    {
-                
-        //    }
-        //}
     }
 }

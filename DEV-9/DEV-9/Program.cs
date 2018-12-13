@@ -13,9 +13,10 @@ namespace DEV_9
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new ChromeDriver();
+            ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.facebook.com/");
-            
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
             LoginPage loginPage = new LoginPage();
             loginPage.UserName = "yopenoz@zdfpost.net";
             loginPage.Password = "FB135795";
@@ -25,6 +26,10 @@ namespace DEV_9
             List<Dialog> unreadDialogs = mainPage.GetUnreadDialogs(driver, 15);
 
             driver.Navigate().GoToUrl("https://www.facebook.com/messages/?filter=unread");
+            driver?.FindElement(By.ClassName("_3ixn"))?.Click();
+
+            MessegesPage messegesPage = new MessegesPage();
+            messegesPage.ExtractUnreadDialogsMesseges(driver, unreadDialogs);
         }
     }
 }
