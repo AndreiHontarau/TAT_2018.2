@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,7 +12,10 @@ namespace DEV_9
     class MessegesPage
     {
         By UnreadDialogButton = By.XPath("//*[@class = '_1enh']//*[@class = '_5l-3 _1ht1 _1ht3']");
-        By Messege = By.XPath("//*[@class = '_3oh- _58nk']");
+        By Messege = By.XPath("//*[@class = '_3058 _ui9 _hh7 _s1- _52mr _3oh-']");
+        By MessegeText = By.XPath("//*[@class = '_3oh- _58nk']");
+        const string hours = @"/d:";
+        const string minutes = @":/d";
 
         public void ExtractUnreadDialogsMesseges(IWebDriver driver, List<Dialog> unreadDialogs)
         {
@@ -34,10 +37,11 @@ namespace DEV_9
                 button?.Click();
                 unreadDialogsButtonsList.Remove(button);
                 messeges = driver.FindElements(Messege);
+
                 foreach (IWebElement messege in messeges)
                 {
                     messegesList.Add(messege);
-                    messegesList.Reverse();
+                    //SortMessegesByTime(messegesList);
                 }
 
                 for (int i = 0; i < unreadDialog.numberOfUnreadMesseges; i++)
@@ -46,5 +50,16 @@ namespace DEV_9
                 }
             }
         }
+
+        //private void SortMessegesByTime(List<IWebElement> messeges)
+        //{
+        //    messeges.OrderBy(x => x.GetAttribute("data-tooltip-content"));
+            
+        //}
+
+        //private DateTime ExtractMessegeDateTime(string time)
+        //{
+
+        //}
     }
 }
