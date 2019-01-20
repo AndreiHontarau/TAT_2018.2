@@ -38,8 +38,8 @@ namespace DEV_3
 
         public enum newBaseRange
         {
-            minBase = 2,
-            maxBase = 20
+            MinBase = 2,
+            MaxBase = 20
         }
 
         /// <summary>
@@ -63,11 +63,11 @@ namespace DEV_3
         }
 
         /// <summary>
-        /// Method DecimalNumeralSystemConversion converts decimal number
+        /// Method ConvertDecimalNumber converts decimal number
         /// to another numeral system
         /// </summary>
         /// <returns>Converted number</returns>
-        public string DecimalNumeralSystemConversion(int newBase)
+        public string ConvertDecimalNumber(int newBase)
         {
             StringBuilder resultOfConvertion = new StringBuilder("");
 

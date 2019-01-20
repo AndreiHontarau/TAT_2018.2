@@ -17,14 +17,14 @@ namespace DEV_3
             {
                 int numberForConversion = int.Parse(args[0]);
                 int newBase = int.Parse(args[1]);
-                if (newBase < (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.minBase || 
-                    newBase > (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.maxBase) //Checking for the correctness of inputed base
+                if (newBase < (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.MinBase || 
+                    newBase > (int)DecimalToOtherNumeralSystemsConvertor.newBaseRange.MaxBase) //Checking for the correctness of inputed base
                 {
                     throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20.");
                 }
 
                 DecimalToOtherNumeralSystemsConvertor Converter = new DecimalToOtherNumeralSystemsConvertor(numberForConversion);
-                Console.WriteLine(Converter.DecimalNumeralSystemConversion(newBase));
+                Console.WriteLine(Converter.ConvertDecimalNumber(newBase));
             }
             catch (ArgumentOutOfRangeException ex)
             {
