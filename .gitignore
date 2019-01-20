@@ -334,3 +334,6 @@ ASALocalRun/
 .localhistory/
 
 DEV-1/
+DEV-2/
+
+*.xml
