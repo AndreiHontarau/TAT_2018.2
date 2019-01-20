@@ -1,5 +1,6 @@
 using System.Text;
 using System.Collections.Generic;
+using System;
 
 namespace DEV_3
 {
@@ -69,6 +70,12 @@ namespace DEV_3
         /// <returns>Converted number</returns>
         public string ConvertDecimalNumber(int newBase)
         {
+            if (newBase < (int)newBaseRange.MinBase ||
+                newBase > (int)newBaseRange.MaxBase) //Checking inputed base for the correctness
+            {
+                throw new ArgumentOutOfRangeException("Base", "Base of a new numeral system should lay in bwtween 2 and 20.");
+            }
+
             StringBuilder resultOfConvertion = new StringBuilder("");
 
             do
