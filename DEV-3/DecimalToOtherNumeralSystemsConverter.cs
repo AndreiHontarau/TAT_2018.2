@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System;
@@ -5,11 +6,11 @@ using System;
 namespace DEV_3
 {
     /// <summary>
-    /// Class NumeralSystemConvertor converts a decimal number
+    /// Class DecimalToOtherNumeralSystemsConverter converts a decimal number
     /// to other numeral systems. New numeral system base shold
     /// lay in between 2 and 20.
     /// </summary>
-    class DecimalToOtherNumeralSystemsConvertor
+    public class DecimalToOtherNumeralSystemsConverter
     {
         private int numberToConvert;
         private bool numberToConvertIsNegative;
@@ -44,13 +45,18 @@ namespace DEV_3
         }
 
         /// <summary>
-        /// Initializes a new instance of the DecimalToOtherNumeralSystemsConvertor
+        /// Initializes a new instance of the DecimalToOtherNumeralSystemsConverter
         /// with specified decimal number and numeral system base
         /// </summary>
         /// <param name="numberForConversion">Number to convert</param>
         /// <param name="newBase">Base of a new numeral system</param>
-        public DecimalToOtherNumeralSystemsConvertor(int numberForConversion)
+        public DecimalToOtherNumeralSystemsConverter(int numberForConversion)
         {
+            if (numberForConversion == int.MinValue)
+            {
+                throw new OverflowException();
+            }
+
             if (numberForConversion < 0)
             {
                 numberToConvert = -numberForConversion;
@@ -78,13 +84,19 @@ namespace DEV_3
 
             StringBuilder resultOfConvertion = new StringBuilder("");
 
+            if (newBase < (int)newBaseRange.MinBase || newBase > (int)newBaseRange.MaxBase)
+            {
+                throw new ArgumentOutOfRangeException("",
+                    "Base of a new numeral system should lay in bwtween 2 and 20 inclusively.");
+            }
+
             do
             {
                 resultOfConvertion.Append(DecimalNmbersToLettersDictionary[numberToConvert % newBase]);
                 numberToConvert /= newBase;
             } while (numberToConvert != 0);
 
-            return SignOutput(ReverseString(resultOfConvertion.ToString()));
+            return AddSignToOutput(ReverseString(resultOfConvertion.ToString()));
         }
 
         /// <summary>
@@ -105,7 +117,7 @@ namespace DEV_3
         /// </summary>
         /// <param name="conversionResult">Result of conversion</param>
         /// <returns>Signed result of conversion</returns>
-        private string SignOutput(string conversionResult)
+        private string AddSignToOutput(string conversionResult)
         {
             if (numberToConvertIsNegative)
             {
