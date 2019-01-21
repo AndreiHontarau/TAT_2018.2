@@ -9,10 +9,10 @@ namespace DEV_4
     /// </summary>
     class xmlElement
     {
-        public string name { get; }
-        public string body { get; set; }
-        public List<xmlAttribute> attributes { get; }
-        public List<xmlElement> nestedElements { get; }
+        public string Name { get; }
+        public string Body { get; set; }
+        public List<xmlAttribute> Attributes { get; }
+        public List<xmlElement> NestedElements { get; }
 
         /// <summary>
         /// Creates sa new instance of xmlElement class
@@ -21,10 +21,10 @@ namespace DEV_4
         /// <param name="elementName"></param>
         public xmlElement(string elementName)
         {
-            name = elementName;
-            body = "";
-            attributes = new List<xmlAttribute>();
-            nestedElements = new List<xmlElement>();
+            Name = elementName;
+            Body = "";
+            Attributes = new List<xmlAttribute>();
+            NestedElements = new List<xmlElement>();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DEV_4
         /// </summary>
         public void PrintRoot()
         {
-            foreach (xmlElement nestedElement in nestedElements)
+            foreach (xmlElement nestedElement in NestedElements)
             {
                 nestedElement.Print(new StringBuilder());
             }
@@ -44,21 +44,21 @@ namespace DEV_4
         /// <param name="path">Path, accumulated from root element</param>
         public void Print(StringBuilder path)
         {
-            path.Append("<" + name);
-            foreach (xmlAttribute attribute in attributes)
+            path.Append("<" + Name);
+            foreach (xmlAttribute attribute in Attributes)
             {
                 path.Append(" { ");
-                path.Append(attribute.name);
+                path.Append(attribute.Name);
                 path.Append("=\"");
-                path.Append(attribute.value);
+                path.Append(attribute.Value);
                 path.Append("\" } ");
             }
             path.Append(">"); 
             path.Append(" -> ");
-            path.Append(body);
-            if (body == String.Empty)
+            path.Append(Body);
+            if (Body == String.Empty)
             {
-                foreach (xmlElement nestedElement in nestedElements)
+                foreach (xmlElement nestedElement in NestedElements)
                 {
                     StringBuilder deeperPath = new StringBuilder(path.ToString());
                     nestedElement.Print(deeperPath);

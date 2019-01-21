@@ -67,7 +67,7 @@ namespace DEV_4
             string attributes = "";
 
             attributes = openingTag.ToString().Substring(openingTag.ToString().IndexOf(" "),
-                element.name.LastIndexOf("\"") - element.name.IndexOf(" ") + 1);
+                element.Name.LastIndexOf("\"") - element.Name.IndexOf(" ") + 1);
 
             while (Regex.IsMatch(openingTag.ToString(), "="))
             {
@@ -85,7 +85,7 @@ namespace DEV_4
 
                 xmlAttribute attribute = new xmlAttribute(attributeName, attributeValue);
 
-                element.attributes.Add(attribute);
+                element.Attributes.Add(attribute);
 
                 openingTag.Replace(" " + attributeName + "=\"" + attributeValue + "\"", String.Empty);
             }
@@ -139,12 +139,12 @@ namespace DEV_4
                 }
                 else
                 {
-                    newElement.body = tagContents.Replace(elementClosingTag.ToString().TrimEnd('>'), String.Empty).ToString();
+                    newElement.Body = tagContents.Replace(elementClosingTag.ToString().TrimEnd('>'), String.Empty).ToString();
                     xmlString = xmlString.Remove(xmlString.IndexOf(element.Value),
                         xmlString.IndexOf(elementClosingTag.ToString()) + elementClosingTag.ToString().Length).Trim();
                 }
 
-                rootElement.nestedElements.Add(newElement);
+                rootElement.NestedElements.Add(newElement);
             }
         }
     }

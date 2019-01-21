@@ -18,10 +18,12 @@ namespace DEV_4
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
                 string xmlString = File.ReadAllText(@args[0]);
+
                 xmlParser.RemoveComments(ref xmlString);
                 xmlParser.RemoveXmlDeclaration(ref xmlString);
                 xmlElement rootElement = new xmlElement("root");
                 xmlParser.Parse(xmlString, rootElement);
+
                 rootElement.PrintRoot();
             }
             catch (Exception ex)
