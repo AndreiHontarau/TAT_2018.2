@@ -333,7 +333,6 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-DEV-1/
-DEV-2/
 
+#XML files
 *.xml
