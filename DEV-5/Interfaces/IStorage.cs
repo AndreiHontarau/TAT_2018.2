@@ -1,6 +1,6 @@
 namespace DEV_5
 {
-    interface IStorageable
+    interface IStorage
     {
         void AddProduct(Product newItem);
         void CountBrands();

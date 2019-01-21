@@ -5,7 +5,7 @@ namespace DEV_5
     /// <summary>
     /// Cars storage, stores Car objects in List
     /// </summary>
-    class CarsHouse : IStorageable
+    class CarsHouse : IStorage
     {
         private List<Product> CarsList;
 

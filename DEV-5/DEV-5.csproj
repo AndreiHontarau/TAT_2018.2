@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IStorageActable.cs" />
     <Compile Include="Commands\AveragePriceCommand.cs" />
     <Compile Include="Commands\AveragePriceForBrandCommand.cs" />
     <Compile Include="Car.cs" />
@@ -53,8 +52,8 @@
     <Compile Include="Commands\CountAllCommand.cs" />
     <Compile Include="Commands\CountBrandsCommand.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Commands\HelpCommand.cs" />
-    <Compile Include="Interfaces\IExecutable.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IStorage.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Abstract classes\Product.cs" />
     <Compile Include="Abstract classes\ProductCreator.cs" />

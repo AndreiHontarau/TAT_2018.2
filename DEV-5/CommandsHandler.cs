@@ -9,6 +9,8 @@ namespace DEV_5
     /// </summary>
     partial class CommandsHandler
     {
+        private static CarsHouse Storage;
+
         // Possible commands
         private const string Exit = "exit";
         private const string CountBrands = "count types";
@@ -16,27 +18,32 @@ namespace DEV_5
         private const string AveragePrice = "average price";
         private const string AveragePriceForBrand = "average price ";
 
-        private Dictionary<string, IExecutable> CommandsDictionary = new Dictionary<string, IExecutable>()
+        private Dictionary<string, ICommand> CommandsDictionary;
+
+        public CommandsHandler(CarsHouse carsHouse)
         {
-            [Exit] = new ExitCommand(),
-            [CountBrands] = new CountBrandsCommand(),
-            [CountAll] = new CountAllCommand(),
-            [AveragePrice] = new AveragePriceCommand(),
-            [AveragePriceForBrand] = new AveragePriceForBrandCommand()
-        };
+            Storage = carsHouse;
+            CommandsDictionary = new Dictionary<string, ICommand>()
+            {
+                [Exit] = new ExitCommand(),
+                [CountBrands] = new CountBrandsCommand(Storage),
+                [CountAll] = new CountAllCommand(Storage),
+                [AveragePrice] = new AveragePriceCommand(Storage),
+                [AveragePriceForBrand] = new AveragePriceForBrandCommand(Storage)
+            };
+        }
 
         /// <summary>
         /// Tries to find and execute command from CommandsDictionry
         /// </summary>
-        /// <param name="CarsList">List of cars that must be passed to command</param>
         /// <param name="command">Command name, command parameters</param>
-        public void HandleCommand(CarsHouse carsHouse, string command)
+        public void HandleCommand(string command)
         {
             if (CommandsDictionary.ContainsKey(command))
             {
-                CommandsDictionary[command].Execute(carsHouse);
+                CommandsDictionary[command].Execute();
             }
-            else if(!TryToExecuteWithArguments(carsHouse, command))
+            else if(!TryToExecuteWithArguments(command))
             {
                 Console.WriteLine("Wrong command.");
             }
@@ -48,7 +55,7 @@ namespace DEV_5
         /// <param name="carsHouse">List of cars that must be passed to command</param>
         /// <param name="command">Command name, command parameters</param>
         /// <returns>True if succeeded, false otherwise</returns>
-        private bool TryToExecuteWithArguments(CarsHouse carsHouse, string command)
+        private bool TryToExecuteWithArguments(string command)
         {
             string[] splittedCommand = command.Split(' ');
             command = "";
@@ -57,7 +64,7 @@ namespace DEV_5
                 command += splittedCommand[i] + " ";
                 if (CommandsDictionary.ContainsKey(command))
                 {
-                    CommandsDictionary[command].Execute(carsHouse, splittedCommand[i + 1]);
+                    CommandsDictionary[command].Execute(splittedCommand[i + 1]);
                     return true;
                 }
             }

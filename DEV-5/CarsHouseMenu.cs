@@ -54,11 +54,11 @@ namespace DEV_5
         {
             Menu.FillInCarsList(carsHouse);
 
-            CommandsHandler commandsHandler = new CommandsHandler();
+            CommandsHandler commandsHandler = new CommandsHandler(carsHouse);
 
             while (exitFlag != true)
             {
-                commandsHandler.HandleCommand(carsHouse, Console.ReadLine());
+                commandsHandler.HandleCommand(Console.ReadLine());
             }
         }
 

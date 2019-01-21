@@ -3,16 +3,22 @@ namespace DEV_5
     /// <summary>
     /// Command class of "count all" command 
     /// </summary>
-    class CountAllCommand : IExecutable
+    class CountAllCommand : ICommand
     {
+        private CarsHouse Storage;
+
+        public CountAllCommand(CarsHouse storage)
+        {
+            Storage = storage;
+        }
+
         /// <summary>
         /// Calls corresponding method of CarsHouse object
         /// </summary>
-        /// <param name="carsHouse">CarsHouse object to call method for</param>
         /// <param name="additionalParameter">Not used for this command</param>
-        public void Execute(CarsHouse carsHouse, string additionalParameter = null)
+        public void Execute(string additionalParameter = null)
         {
-            carsHouse.CountAllProducts();
+            Storage.CountAllProducts();
         }
     }
 }
