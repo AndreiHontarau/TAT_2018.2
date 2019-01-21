@@ -39,8 +39,8 @@ namespace DEV_3
 
         public enum newBaseRange
         {
-            minBase = 2,
-            maxBase = 20
+            MinBase = 2,
+            MaxBase = 20
         }
 
         /// <summary>
@@ -77,9 +77,10 @@ namespace DEV_3
         {
             StringBuilder resultOfConvertion = new StringBuilder("");
 
-            if (newBase < 2 || newBase > 20)
+            if (newBase < (int)newBaseRange.MinBase || newBase > (int)newBaseRange.MaxBase)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("",
+                    "Base of a new numeral system should lay in bwtween 2 and 20 inclusively.");
             }
 
             do

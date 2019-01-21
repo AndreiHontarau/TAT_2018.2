@@ -15,19 +15,9 @@ namespace DEV_3
         {
             try
             {
-                int numberForConversion = int.Parse(args[0]);
-                int newBase = int.Parse(args[1]);
-                //Checking for the correctness of inputed base
-                if (newBase < (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.minBase ||
-                    newBase > (int) DecimalToOtherNumeralSystemsConverter.newBaseRange.maxBase)
-                {
-                    throw new ArgumentOutOfRangeException("",
-                        "Base of a new numeral system should lay in bwtween 2 and 20 inclusively.");
-                }
-
                 DecimalToOtherNumeralSystemsConverter DecimalConverter =
-                    new DecimalToOtherNumeralSystemsConverter(numberForConversion);
-                Console.WriteLine(DecimalConverter.ConvertDecimalNumber(newBase));
+                    new DecimalToOtherNumeralSystemsConverter(int.Parse(args[0]));
+                Console.WriteLine(DecimalConverter.ConvertDecimalNumber(int.Parse(args[1])));
             }
             catch (FormatException)
             {
