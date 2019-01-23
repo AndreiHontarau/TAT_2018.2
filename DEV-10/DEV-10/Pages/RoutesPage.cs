@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace DEV_10
+namespace DEV_10.Pages
 {
-    class TrainPage
+    public class RoutesPage
     {
     }
 }
