@@ -34,9 +34,9 @@ namespace DEV_10.Tests
         {
             var termsPage = new TermsPage();
             PageFactory.InitElements(_driver, termsPage);
-            _loginPage.EnterLogin(login);
-            _loginPage.EnterPassword(passwrod);
-            _loginPage.ClickLogInButton();
+            _loginPage.LoginTextBox.SendKeys(login);
+            _loginPage.PasswordTextBox.SendKeys(passwrod);
+            _loginPage.LoginButton.Click();
             Assert.IsFalse(string.IsNullOrEmpty(termsPage.LogoutLink.Text));
         }
 
@@ -44,9 +44,9 @@ namespace DEV_10.Tests
         [TestCase("WrongLogin", "Src8hr")]
         public void WrongInputLogin(string login, string passwrod)
         {
-            _loginPage.EnterLogin(login);
-            _loginPage.EnterPassword(passwrod);
-            _loginPage.ClickLogInButton();
+            _loginPage.LoginTextBox.SendKeys(login);
+            _loginPage.PasswordTextBox.SendKeys(passwrod);
+            _loginPage.LoginButton.Click();
             Assert.IsTrue(_loginPage.LoginErrorMessage.Displayed);
         }
 
@@ -54,9 +54,9 @@ namespace DEV_10.Tests
         [TestCase("TAT2018.2", "WrongPassword")]
         public void WrongInputPassword(string login, string passwrod)
         {
-            _loginPage.EnterLogin(login);
-            _loginPage.EnterPassword(passwrod);
-            _loginPage.ClickLogInButton();
+            _loginPage.LoginTextBox.SendKeys(login);
+            _loginPage.PasswordTextBox.SendKeys(passwrod);
+            _loginPage.LoginButton.Click();
             Assert.IsTrue(_loginPage.PasswordErrorMessage.Displayed);
         }
     }
