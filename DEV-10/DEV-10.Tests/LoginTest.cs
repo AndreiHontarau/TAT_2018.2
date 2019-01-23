@@ -39,5 +39,25 @@ namespace DEV_10.Tests
             _loginPage.ClickLogInButton();
             Assert.IsFalse(string.IsNullOrEmpty(termsPage.LogoutLink.Text));
         }
+
+        [Test]
+        [TestCase("WrongLogin", "Src8hr")]
+        public void WrongInputLogin(string login, string passwrod)
+        {
+            _loginPage.EnterLogin(login);
+            _loginPage.EnterPassword(passwrod);
+            _loginPage.ClickLogInButton();
+            Assert.IsTrue(_loginPage.LoginErrorMessage.Displayed);
+        }
+
+        [Test]
+        [TestCase("TAT2018.2", "WrongPassword")]
+        public void WrongInputPassword(string login, string passwrod)
+        {
+            _loginPage.EnterLogin(login);
+            _loginPage.EnterPassword(passwrod);
+            _loginPage.ClickLogInButton();
+            Assert.IsTrue(_loginPage.PasswordErrorMessage.Displayed);
+        }
     }
 }
