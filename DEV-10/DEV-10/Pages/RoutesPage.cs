@@ -6,6 +6,9 @@ namespace DEV_10.Pages
 {
     public class RoutesPage
     {
+        [FindsBy(How = How.ClassName, Using = "page")]
+        public IWebElement Page { get; set; }
+
         /// <summary>Selected tab</summary>
         [FindsBy(How = How.ClassName, Using = "tabsl2_ch")]
         public IWebElement TrainTabSelected { get; set; }
@@ -46,6 +49,10 @@ namespace DEV_10.Pages
         [FindsBy(How = How.ClassName, Using = "ui-datepicker-trigger")]
         public IWebElement DatePickerButton { get; set; }
 
+        /// <summary>Calendar datepicker</summary>
+        [FindsBy(How = How.ClassName, Using = "ui-datepicker-div")]
+        public IWebElement DatePicker { get; set; }
+
         /// <summary>Time selection box.</summary>
         [FindsBy(How = How.ClassName, Using = "time")]
         public IWebElement TimeSelectionBox { get; set; }
@@ -73,8 +80,12 @@ namespace DEV_10.Pages
         [FindsBy(How = How.ClassName, Using = "commandExRedButton")]
         public IWebElement ResetButton { get; set; }
 
-        /// <summary>Selects spesified time range. Pass two equal numbers to select one cell</summary>
-        public void SelectTimeRange(int cellNumberFrom, int cellNumberTo)
+        /// <summary>
+        /// Selects spesified time range. Pass two equal numbers to select one cell</summary>
+        /// </summary>
+        /// <param name="cellNumberFrom">First interval limit</param>
+        /// <param name="cellNumberTo">Second interval limitt</param>
+        public void SetTimeInterval(int cellNumberFrom, int cellNumberTo)
         {
             if (TimeCells == null)
             {
@@ -85,6 +96,28 @@ namespace DEV_10.Pages
 
             TimeCells[cellNumberFrom].Click();
             TimeCells[cellNumberTo].Click();
+        }
+
+        /// <summary>
+        /// Sets departure and destination stations
+        /// </summary>
+        /// <param name="departureStation">Departure station name</param>
+        /// <param name="destinationStation">Destination station name</param>
+        public void SetRoute(string departureStation, string destinationStation)
+        {
+            DepartureStationTextBox.SendKeys(departureStation);
+            DestinationStationTextBox.SendKeys(destinationStation);
+        }
+
+        /// <summary>
+        /// Sets date
+        /// </summary>
+        /// <param name="day">Day</param>
+        /// <param name="month">Month</param>
+        public void SetDate(int day, int month, int year)
+        {
+            DateTextBox.Clear();
+           DateTextBox.SendKeys(day + "." + month + "." + year);
         }
     }
 }

@@ -3,7 +3,6 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
 using DEV_10.Pages;
-using OpenQA.Selenium;
 
 namespace DEV_10.Tests
 {
@@ -42,8 +41,7 @@ namespace DEV_10.Tests
         {
             var trainPage = new TrainPage();
             PageFactory.InitElements(_driver, trainPage);
-            _routesPage.DepartureStationTextBox.SendKeys(departure);
-            _routesPage.DestinationStationTextBox.SendKeys(destination);
+            _routesPage.SetRoute(departure, destination);
             _routesPage.ContinueButton.Click();
             Assert.IsTrue(trainPage.TrainTab.Enabled);
         }
