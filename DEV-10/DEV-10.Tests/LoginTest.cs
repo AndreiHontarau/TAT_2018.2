@@ -30,33 +30,27 @@ namespace DEV_10.Tests
 
         [Test]
         [TestCase("TAT2018.2", "Src8hr")]
-        public void CorrectInputLogin(string login, string passwrod)
+        public void CorrectInputLogin(string login, string password)
         {
             var termsPage = new TermsPage();
             PageFactory.InitElements(_driver, termsPage);
-            _loginPage.LoginTextBox.SendKeys(login);
-            _loginPage.PasswordTextBox.SendKeys(passwrod);
-            _loginPage.LoginButton.Click();
+            _loginPage.Login(login, password);
             Assert.IsFalse(string.IsNullOrEmpty(termsPage.LogoutLink.Text));
         }
 
         [Test]
         [TestCase("WrongLogin", "Src8hr")]
-        public void WrongInputLogin(string login, string passwrod)
+        public void WrongInputLogin(string login, string password)
         {
-            _loginPage.LoginTextBox.SendKeys(login);
-            _loginPage.PasswordTextBox.SendKeys(passwrod);
-            _loginPage.LoginButton.Click();
+            _loginPage.Login(login, password);
             Assert.IsTrue(_loginPage.LoginErrorMessage.Displayed);
         }
 
         [Test]
         [TestCase("TAT2018.2", "WrongPassword")]
-        public void WrongInputPassword(string login, string passwrod)
+        public void WrongInputPassword(string login, string password)
         {
-            _loginPage.LoginTextBox.SendKeys(login);
-            _loginPage.PasswordTextBox.SendKeys(passwrod);
-            _loginPage.LoginButton.Click();
+            _loginPage.Login(login, password);
             Assert.IsTrue(_loginPage.PasswordErrorMessage.Displayed);
         }
     }

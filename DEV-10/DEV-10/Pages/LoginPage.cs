@@ -24,5 +24,12 @@ namespace DEV_10.Pages
         /// <summary>Password error message.</summary>
         [FindsBy(How = How.Id, Using = "password.errors")]
         public IWebElement PasswordErrorMessage { get; set; }
+
+        public void Login(string login, string password)
+        {
+            LoginTextBox.SendKeys(login);
+            PasswordTextBox.SendKeys(password);
+            LoginButton.Click();
+        }
     }
 }
